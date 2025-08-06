@@ -1,0 +1,124 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-py"
+}
+
+datasource db {
+  provider = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Score {
+  id String @id @default(uuid()) @map("_id")
+  candidateId String @unique
+  experience_score Float
+  skills_score Float
+  culture_fit_score Float
+  total_score Float
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  candidate Candidate?
+}
+// this is for the company
+// const [formData, setFormData] = useState({
+//     companyName: '',
+//     contactPerson: '',
+//     email: '',
+//     phone: '',
+//     website: '',
+//     industry: '',
+//     companySize: '',
+//     location: '',
+//     jobTitle: '',
+//     department: '',
+//     jobType: '',
+//     experienceLevel: '',
+//     salary: '',
+//     skills: '',
+//     jobDescription: '',
+//     requirements: '',
+//     benefits: '',
+//     applicationDeadline: undefined as Date | undefined,
+//     interviewDate: undefined as Date | undefined,
+//   });
+
+//this is for the candidate
+// const [formData, setFormData] = useState({
+//     firstName: '',
+//     lastName: '',
+//     email: '',
+//     phone: '',
+//     dateOfBirth: undefined as Date | undefined,
+//     address: '',
+//     city: '',
+//     state: '',
+//     zipCode: '',
+//     university: '',
+//     degree: '',
+//     major: '',
+//     graduationDate: undefined as Date | undefined,
+//     gpa: '',
+//     skills: '',
+//     experience: '',
+//     projects: '',
+//     certifications: '',
+//     linkedIn: '',
+//     portfolio: '',
+//     preferredJobType: '',
+//     preferredLocation: '',
+//     salaryExpectations: '',
+//     availabilityDate: undefined as Date | undefined,
+//     coverLetter: '',
+//   });
+
+model Candidate {
+  id String @id @default(uuid()) @map("_id")
+  name String
+  email String @unique
+  phone String @unique
+  dateOfBirth DateTime?
+  university String?
+  degree String?
+  major String?
+  graduationDate DateTime?
+  cgpa Float?
+  resume String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  score Score? @relation(fields: [id], references: [candidateId])
+  interviewTime DateTime?
+}
+
+model Company {
+  id String @id @default(uuid()) @map("_id")
+  name String
+  contactPerson String
+  email String @unique
+  phone String @unique
+  website String?
+  industry String?
+  companySize String?
+  location String?
+  jobTitle String?
+  department String?
+  jobType String?
+  experienceLevel String?
+  salary String?
+  skills String?
+  jobDescription String?
+  requirements String?
+  benefits String?
+  applicationDeadline DateTime?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+
+
