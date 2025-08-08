@@ -6,8 +6,9 @@ from datetime import date
 router = APIRouter(
     prefix="/companies",
     title="Company API",
-    description="A simple FastAPI Company API",
+    description="API for managing companies for Rezkrypt-beta",
     version="0.0.1",
+    responses={404: {"description": "Not found"}},
 )
 
 # this is the schema from the prisma schema
