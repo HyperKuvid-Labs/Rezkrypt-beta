@@ -109,7 +109,7 @@ async def get_company_info():
     return company_info
 
 #so gonna write the audio thing over here
-BASE_DATA = "./data"
+BASE_DATA = "../data"
 AUDIO_DIR = os.path.join(BASE_DATA, "audio_turns")
 TRANSCRIPT_DIR = os.path.join(BASE_DATA, "transcripts")
 EVAL_DIR = os.path.join(BASE_DATA, "evals")

@@ -17,7 +17,6 @@ class DetectorConfig:
     max_faces: int = 2
     min_detect_conf: float = 0.5
     min_track_conf: float = 0.5
-    # Gaze/zone
     zone_edge_ratio: float = 0.3
     dwell_warn_s: float = 3.0
     dwell_critical_s: float = 5.0
